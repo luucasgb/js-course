@@ -40,6 +40,9 @@ console.log(
 );
 
 // Strings and template literals
+console.log(
+  `${country} is in ${continent}, and its ${population} people speak ${language}`
+);
 
 // Taking decisions: if/else statements
 
