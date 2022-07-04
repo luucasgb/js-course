@@ -108,3 +108,10 @@ switch (language) {
 }
 
 // Ternary operator
+const wordBelow = "below";
+const wordAvobe = "above";
+console.log(
+  `Brazil's population is ${
+    population > 33000000 ? wordAvobe : wordBelow
+  } average.`
+);
