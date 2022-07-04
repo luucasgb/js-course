@@ -66,6 +66,16 @@ console.log("123" < 57);
 console.log(5 + 6 + "4" + 9 - 4 - 2);
 
 // Equality operators: == vs ===
+let numNeighbours = prompt(
+  "How many neighbour countries does your contry have?"
+);
+if (Number(numNeighbours) === 1) {
+  console.log("Only 1 border");
+} else if (Number(numNeighbours) > 1) {
+  console.log("More than 1 border");
+} else {
+  console.log("No borders.");
+}
 
 // Logical operators
 
