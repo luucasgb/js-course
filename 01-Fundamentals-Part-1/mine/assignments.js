@@ -45,6 +45,13 @@ console.log(
 );
 
 // Taking decisions: if/else statements
+if (population > 33000000) {
+  console.log(`Brazil's population is above average`);
+} else {
+  console.log(
+    `Brazil's population is ${33000000 - population} people below average`
+  );
+}
 
 // Type conversion and coercion
 
