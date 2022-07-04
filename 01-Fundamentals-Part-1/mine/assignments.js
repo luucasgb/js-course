@@ -54,6 +54,16 @@ if (population > 33000000) {
 }
 
 // Type conversion and coercion
+// '9' - '5'; -> should return 4
+console.log("9" - "5");
+// '19' - '13' + '17'; -> should return '617'
+console.log("19" - "13" + "17");
+// '19' - '13' + 17; -> should return 23
+console.log("19" - "13" + 17);
+// '123' < 57; -> should return false
+console.log("123" < 57);
+// 5 + 6 + '4' + 9 - 4 - 2; -> should return 1143
+console.log(5 + 6 + "4" + 9 - 4 - 2);
 
 // Equality operators: == vs ===
 
