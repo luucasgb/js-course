@@ -1,3 +1,5 @@
+"use strict";
+
 const mark = {
   firstName: "Mark",
   lastName: "Batista",

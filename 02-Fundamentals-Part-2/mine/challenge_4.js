@@ -1,3 +1,5 @@
+"use strict";
+
 const calcTip = (value) => {
   if (value >= 50 && value <= 300) {
     return value * 0.15;
