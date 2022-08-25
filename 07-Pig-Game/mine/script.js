@@ -1,12 +1,18 @@
 "use strict";
 
-//Get buttons
+//Buttons
 const btnNew = document.querySelector(".btn--new");
 const btnRoll = document.querySelector(".btn--roll");
 const btnHold = document.querySelector(".btn--hold");
+
+//UI itens
 const currentDice = document.querySelector(".dice");
 const pl0 = document.querySelector(".player--0");
+const pl0score = document.getElementById("score--0");
+const pl0current = document.getElementById("current--0");
 const pl1 = document.querySelector(".player--1");
+const pl1score = document.getElementById("score--1");
+const pl1current = document.getElementById("current--1");
 
 //Player object
 var player = {
@@ -62,20 +68,18 @@ const setCurrentScore = (value) => {
 
 const displayCurrentScore = (player) => {
   if (player === player1) {
-    document.getElementById("current--0").textContent =
-      activePlayer.currentScore;
+    pl0current.textContent = activePlayer.currentScore;
   } else {
-    document.getElementById("current--1").textContent =
-      activePlayer.currentScore;
+    pl1current.textContent = activePlayer.currentScore;
   }
 };
 
 const setTotalScore = () => {
   activePlayer.totalScore += activePlayer.currentScore;
   if (activePlayer === player1) {
-    document.getElementById("score--0").textContent = activePlayer.totalScore;
+    pl0score.textContent = activePlayer.totalScore;
   } else {
-    document.getElementById("score--1").textContent = activePlayer.totalScore;
+    pl1score.textContent = activePlayer.totalScore;
   }
 };
 
@@ -116,10 +120,10 @@ const resetCurrentScore = (player) => {
 };
 
 const resetDisplayedScore = () => {
-  document.getElementById("score--0").textContent = 0;
-  document.getElementById("current--0").textContent = 0;
-  document.getElementById("score--1").textContent = 0;
-  document.getElementById("current--1").textContent = 0;
+  pl0score.textContent = 0;
+  pl0current.textContent = 0;
+  pl1score.textContent = 0;
+  pl1current.textContent = 0;
 };
 
 const winGame = (player) => {
