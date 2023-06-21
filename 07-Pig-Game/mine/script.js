@@ -1,5 +1,8 @@
 "use strict";
 
+//Constants
+const winningScore = 15;
+
 //Buttons
 const btnNew = document.querySelector(".btn--new");
 const btnRoll = document.querySelector(".btn--roll");
@@ -7,12 +10,12 @@ const btnHold = document.querySelector(".btn--hold");
 
 //UI itens
 const currentDice = document.querySelector(".dice");
-const pl0 = document.querySelector(".player--0");
-const pl0score = document.getElementById("score--0");
-const pl0current = document.getElementById("current--0");
 const pl1 = document.querySelector(".player--1");
 const pl1score = document.getElementById("score--1");
 const pl1current = document.getElementById("current--1");
+const pl2 = document.querySelector(".player--2");
+const pl2score = document.getElementById("score--2");
+const pl2current = document.getElementById("current--2");
 
 //Player object
 var player = {
@@ -36,7 +39,7 @@ const holdScore = () => {
   setTotalScore();
   resetCurrentScore(activePlayer);
   displayCurrentScore(activePlayer);
-  if (activePlayer.totalScore >= 100) {
+  if (activePlayer.totalScore >= winningScore) {
     winGame(activePlayer);
   } else {
     activePlayer = switchActivePlayer();
@@ -68,18 +71,18 @@ const setCurrentScore = (value) => {
 
 const displayCurrentScore = (player) => {
   if (player === player1) {
-    pl0current.textContent = activePlayer.currentScore;
-  } else {
     pl1current.textContent = activePlayer.currentScore;
+  } else {
+    pl2current.textContent = activePlayer.currentScore;
   }
 };
 
 const setTotalScore = () => {
   activePlayer.totalScore += activePlayer.currentScore;
   if (activePlayer === player1) {
-    pl0score.textContent = activePlayer.totalScore;
-  } else {
     pl1score.textContent = activePlayer.totalScore;
+  } else {
+    pl2score.textContent = activePlayer.totalScore;
   }
 };
 
@@ -87,12 +90,12 @@ const switchActivePlayer = () => {
   player1.isActive = !player1.isActive;
   player2.isActive = !player2.isActive;
   if (player1.isActive) {
-    pl0.classList.add("player--active");
-    pl1.classList.remove("player--active");
+    pl1.classList.add("player--active");
+    pl2.classList.remove("player--active");
     return player1;
   } else {
-    pl0.classList.remove("player--active");
-    pl1.classList.add("player--active");
+    pl1.classList.remove("player--active");
+    pl2.classList.add("player--active");
     return player2;
   }
 };
@@ -103,11 +106,10 @@ const newGame = () => {
   resetScore(player2);
   resetDisplayedScore();
   resetWinnerStatus();
-  player.isActive = true;
+  setButtonsEnabledState(true);
   if (activePlayer === player2) {
     activePlayer = switchActivePlayer();
   }
-  currentDice.classList.add(".hidden");
 };
 
 const resetScore = (player) => {
@@ -120,25 +122,41 @@ const resetCurrentScore = (player) => {
 };
 
 const resetDisplayedScore = () => {
-  pl0score.textContent = 0;
-  pl0current.textContent = 0;
   pl1score.textContent = 0;
   pl1current.textContent = 0;
+  pl2score.textContent = 0;
+  pl2current.textContent = 0;
 };
 
 const winGame = (player) => {
   if (player === player1) {
-    pl0.classList.add("player--winner");
-  } else {
     pl1.classList.add("player--winner");
+  } else {
+    pl2.classList.add("player--winner");
   }
+  setButtonsEnabledState(false);
+  currentDice.classList.add("hidden");
 };
 
 const resetWinnerStatus = () => {
-  if (pl0.classList.contains("player--winner"))
-    pl0.classList.remove("player--winner");
   if (pl1.classList.contains("player--winner"))
     pl1.classList.remove("player--winner");
+  if (pl2.classList.contains("player--winner"))
+    pl2.classList.remove("player--winner");
+};
+
+const setButtonsEnabledState = (enabled) => {
+  if (enabled) {
+    btnRoll.classList.remove("btn--disabled");
+    btnRoll.disabled = false;
+    btnHold.classList.remove("btn--disabled");
+    btnHold.disabled = false;
+  } else {
+    btnRoll.classList.add("btn--disabled");
+    btnRoll.disabled = true;
+    btnHold.classList.add("btn--disabled");
+    btnHold.disabled = true;
+  }
 };
 
 //Event Listeners
